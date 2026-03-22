@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCNA 200-301 — Cheat Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#049FD9;--green:#6CC04A;--orange:#FF6B00;--yellow:#FFCD00;
+  --red:#E2231A;--teal:#00A591;--purple:#9B59B6;
+  --bg:#030F1A;--bg2:#061828;--card:#071E2E;--bdr:#0E3A56;
+  --txt:#E8F4FC;--muted:#6B9AB8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--txt);font-family:'Barlow',sans-serif;font-size:11.5px;line-height:1.45;}
+.hdr{background:linear-gradient(135deg,#001B2E 0%,#003352 55%,#001B2E 100%);border-bottom:3px solid var(--blue);padding:16px 24px 12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(4,159,217,0.04) 60px,rgba(4,159,217,0.04) 61px);}
+.hdr-left{display:flex;align-items:center;gap:14px;position:relative;z-index:1;}
+.hdr-title h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(20px,4vw,32px);font-weight:900;letter-spacing:2px;color:#fff;line-height:1;text-transform:uppercase;}
+.hdr-title h1 span{color:var(--blue);}
+.hdr-title p{font-family:'Barlow Condensed',sans-serif;font-size:clamp(9px,1.4vw,12px);font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;position:relative;z-index:1;}
+.exam-code{font-family:'JetBrains Mono',monospace;font-size:clamp(16px,3vw,26px);font-weight:700;color:var(--blue);line-height:1;}
+.pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+.pill{background:rgba(4,159,217,0.18);border:1px solid rgba(4,159,217,0.4);color:var(--blue);font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
+.pill.g{background:rgba(108,192,74,0.15);border-color:rgba(108,192,74,0.4);color:var(--green);}
+.pill.o{background:rgba(255,107,0,0.15);border-color:rgba(255,107,0,0.4);color:var(--orange);}
+.pill.r{background:rgba(226,35,26,0.15);border-color:rgba(226,35,26,0.4);color:#FF7070;}
+.pill.y{background:rgba(255,205,0,0.15);border-color:rgba(255,205,0,0.4);color:var(--yellow);}
+.ibar{background:#040F1C;border-bottom:1px solid var(--bdr);padding:8px 24px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;}
+.ibar-item{display:flex;align-items:center;gap:5px;font-size:10.5px;}
+.ibar-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.ibar-val{font-family:'JetBrains Mono',monospace;color:#fff;font-weight:500;}
+.ibar-sep{color:var(--bdr);font-size:16px;}
+.dbar{display:flex;background:var(--bg2);border-bottom:1px solid var(--bdr);overflow-x:auto;}
+.dseg{flex:1;min-width:90px;padding:5px 6px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-right:1px solid var(--bdr);}
+.dseg:last-child{border-right:none;}
+.dseg .pct{font-size:15px;font-weight:900;display:block;line-height:1;}
+.dseg .est{font-size:8.5px;color:rgba(255,255,255,0.35);display:block;margin-top:1px;}
+.d1{color:var(--blue);background:rgba(4,159,217,0.08);}
+.d2{color:var(--green);background:rgba(108,192,74,0.08);}
+.d3{color:var(--orange);background:rgba(255,107,0,0.08);}
+.d4{color:var(--yellow);background:rgba(255,205,0,0.08);}
+.d5{color:var(--red);background:rgba(226,35,26,0.08);}
+.d6{color:var(--teal);background:rgba(0,165,145,0.08);}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);padding:1px;}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr);}.s4,.s3{grid-column:span 3;}.s2{grid-column:span 2;}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr);}.s4,.s3,.s2{grid-column:span 2;}}
+@media(max-width:480px){.grid{grid-template-columns:1fr;}.s4,.s3,.s2{grid-column:span 1;}.two,.three{grid-template-columns:1fr;}}
+.card{background:var(--card);padding:10px 12px;}
+.s2{grid-column:span 2;}.s3{grid-column:span 3;}.s4{grid-column:span 4;}
+.ch{display:flex;align-items:center;gap:6px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bdr);}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.ct{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;flex:1;}
+.cb{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:2px 6px;border-radius:2px;flex-shrink:0;}
+.B .dot{background:var(--blue);}.B .ct{color:var(--blue);}.B .cb{background:rgba(4,159,217,0.18);color:var(--blue);}.B .bul{background:rgba(4,159,217,0.6);}
+.G .dot{background:var(--green);}.G .ct{color:var(--green);}.G .cb{background:rgba(108,192,74,0.18);color:var(--green);}.G .bul{background:rgba(108,192,74,0.6);}
+.O .dot{background:var(--orange);}.O .ct{color:var(--orange);}.O .cb{background:rgba(255,107,0,0.18);color:var(--orange);}.O .bul{background:rgba(255,107,0,0.6);}
+.Y .dot{background:var(--yellow);}.Y .ct{color:var(--yellow);}.Y .cb{background:rgba(255,205,0,0.18);color:var(--yellow);}.Y .bul{background:rgba(255,205,0,0.6);}
+.R .dot{background:var(--red);}.R .ct{color:var(--red);}.R .cb{background:rgba(226,35,26,0.18);color:#FF7070;}.R .bul{background:rgba(226,35,26,0.6);}
+.T .dot{background:var(--teal);}.T .ct{color:var(--teal);}.T .cb{background:rgba(0,165,145,0.18);color:var(--teal);}.T .bul{background:rgba(0,165,145,0.6);}
+.P .dot{background:var(--purple);}.P .ct{color:var(--purple);}.P .cb{background:rgba(155,89,182,0.18);color:var(--purple);}.P .bul{background:rgba(155,89,182,0.6);}
+.row{display:flex;align-items:flex-start;gap:4px;margin-bottom:3px;}
+.bul{width:4px;height:4px;border-radius:50%;margin-top:4.5px;flex-shrink:0;background:var(--muted);}
+.rt{font-size:11px;color:var(--txt);}
+.rt strong{color:#fff;font-weight:600;}
+.rt em{color:var(--muted);font-style:normal;font-size:10px;}
+.sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:7px 0 4px;padding-top:5px;border-top:1px dashed var(--bdr);display:flex;align-items:center;gap:4px;}
+.sub::before{content:'\25B8';font-size:9px;}
+code{font-family:'JetBrains Mono',monospace;font-size:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:0 4px;border-radius:2px;color:#A8D8F0;}
+.cmd{background:rgba(0,0,0,0.42);border-left:3px solid var(--blue);border-radius:0 3px 3px 0;padding:6px 8px;margin:4px 0;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#A8D8F0;line-height:1.65;white-space:pre;}
+.cmd.G{border-left-color:var(--green);}.cmd.O{border-left-color:var(--orange);}.cmd.Y{border-left-color:var(--yellow);}.cmd.R{border-left-color:var(--red);}.cmd.T{border-left-color:var(--teal);}.cmd.P{border-left-color:var(--purple);}
+.cmt{color:#3A7A4A;}.kw{color:var(--yellow);}.vl{color:var(--green);}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:1px 5px;border-radius:2px;margin:1px 2px 1px 0;white-space:nowrap;}
+.tb{background:rgba(4,159,217,0.15);border:1px solid rgba(4,159,217,0.3);color:var(--blue);}
+.tg{background:rgba(108,192,74,0.15);border:1px solid rgba(108,192,74,0.3);color:var(--green);}
+.to{background:rgba(255,107,0,0.15);border:1px solid rgba(255,107,0,0.3);color:var(--orange);}
+.tr{background:rgba(226,35,26,0.15);border:1px solid rgba(226,35,26,0.3);color:#FF7070;}
+.tt{background:rgba(0,165,145,0.15);border:1px solid rgba(0,165,145,0.3);color:var(--teal);}
+.ty{background:rgba(255,205,0,0.15);border:1px solid rgba(255,205,0,0.3);color:var(--yellow);}
+.tp{background:rgba(155,89,182,0.15);border:1px solid rgba(155,89,182,0.3);color:var(--purple);}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 10px;}
+table.mt{width:100%;border-collapse:collapse;margin-top:4px;}
+table.mt th{background:rgba(255,255,255,0.05);font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);padding:4px 6px;text-align:left;border-bottom:1px solid var(--bdr);}
+table.mt td{font-size:10.5px;padding:3px 6px;border-bottom:1px solid rgba(14,58,86,0.5);vertical-align:top;}
+table.mt tr:last-child td{border-bottom:none;}
+table.mt td:first-child{color:#fff;font-weight:500;}
+.osi-row{display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:3px;margin-bottom:2px;background:rgba(255,255,255,0.03);border-left:2px solid transparent;}
+.osi-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;width:18px;text-align:center;flex-shrink:0;}
+.osi-nm{font-weight:600;font-size:11px;color:#fff;width:76px;flex-shrink:0;}
+.osi-d{font-size:10px;color:var(--muted);}
+.srow{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 0;border-bottom:1px solid rgba(14,58,86,0.4);}
+.srow:last-child{border-bottom:none;}
+.srow span:first-child{color:var(--blue);}.srow span:nth-child(2){color:var(--green);}.srow span:last-child{color:var(--muted);}
+.footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:8px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.footer-l{font-size:10px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+.footer-r{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(4,159,217,0.5);}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-left">
+    <svg width="68" height="34" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#049FD9">
+        <rect x="45" y="7"  width="10" height="22" rx="2"/>
+        <rect x="31" y="12" width="8"  height="17" rx="2"/>
+        <rect x="18" y="17" width="8"  height="12" rx="2"/>
+        <rect x="5"  y="21" width="8"  height="8"  rx="2"/>
+        <rect x="61" y="12" width="8"  height="17" rx="2"/>
+        <rect x="74" y="17" width="8"  height="12" rx="2"/>
+        <rect x="87" y="21" width="8"  height="8"  rx="2"/>
+      </g>
+      <text x="50" y="47" font-family="Arial,sans-serif" font-size="13" font-weight="900" fill="#049FD9" text-anchor="middle" letter-spacing="3">CISCO</text>
+    </svg>
+    <div class="hdr-title">
+      <h1>CCNA <span>Cheat Sheet</span></h1>
+      <p>Implementing &amp; Administering Cisco Solutions · v1.1 · 2025–2026</p>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="exam-code">200-301</div>
+    <div class="pills">
+      <span class="pill">120 min</span>
+      <span class="pill g">~100 questões</span>
+      <span class="pill o">$330 USD</span>
+      <span class="pill r">Aprovação: ~825/1000</span>
+      <span class="pill y">Validade: 3 anos</span>
+    </div>
+  </div>
+</div>
+
+<!-- BARRA INFO DA PROVA -->
+<div class="ibar">
+  <div class="ibar-item"><span class="ibar-label">Código</span><span class="ibar-val">200-301 v1.1</span></div>
+  <span class="ibar-sep">|</span>
+  <div class="ibar-item"><span class="ibar-label">Duração</span><span class="ibar-val">120 minutos</span></div>
+  <span class="ibar-sep">|</span>
+  <div class="ibar-item"><span class="ibar-label">Questões</span><span class="ibar-val">~100 (múltipla escolha, drag-drop, simulações, simlets)</span></div>
+  <span class="ibar-sep">|</span>
+  <div class="ibar-item"><span class="ibar-label">Nota mínima</span><span class="ibar-val">825 / 1000 pontos</span></div>
+  <span class="ibar-sep">|</span>
+  <div class="ibar-item"><span class="ibar-label">Idiomas</span><span class="ibar-val">Inglês · Japonês</span></div>
+  <span class="ibar-sep">|</span>
+  <div class="ibar-item"><span class="ibar-label">Renovação</span><span class="ibar-val">Recertificar a cada 3 anos (exame ou CE)</span></div>
+  <span class="ibar-sep">|</span>
+  <div class="ibar-item"><span class="ibar-label">Próximo passo</span><span class="ibar-val">CCNP Enterprise / Security / etc.</span></div>
+</div>
+
+<!-- BARRA DE DOMÍNIOS -->
+<div class="dbar">
+  <div class="dseg d1"><span class="pct">20%</span>D1 · Fundamentos de Rede<span class="est">~20 questões</span></div>
+  <div class="dseg d2"><span class="pct">20%</span>D2 · Acesso à Rede<span class="est">~20 questões</span></div>
+  <div class="dseg d3"><span class="pct">25%</span>D3 · Conectividade IP<span class="est">~25 questões</span></div>
+  <div class="dseg d4"><span class="pct">10%</span>D4 · Serviços IP<span class="est">~10 questões</span></div>
+  <div class="dseg d5"><span class="pct">15%</span>D5 · Segurança<span class="est">~15 questões</span></div>
+  <div class="dseg d6"><span class="pct">10%</span>D6 · Automação<span class="est">~10 questões</span></div>
+</div>
+
+<!-- GRID PRINCIPAL -->
+<div class="grid">
+
+<!-- OSI MODEL -->
+<div class="card B">
+  <div class="ch"><div class="dot"></div><div class="ct">Modelo OSI</div><div class="cb">D1</div></div>
+  <div class="osi-row" style="border-left-color:#FF6B6B"><div class="osi-n" style="color:#FF6B6B">7</div><div class="osi-nm">Aplicação</div><div class="osi-d">HTTP, HTTPS, FTP, SMTP, DNS, SNMP, SSH, Telnet</div></div>
+  <div class="osi-row" style="border-left-color:#FF9F43"><div class="osi-n" style="color:#FF9F43">6</div><div class="osi-nm">Apresentação</div><div class="osi-d">Criptografia, codificação, SSL/TLS, JPEG</div></div>
+  <div class="osi-row" style="border-left-color:#FFCD00"><div class="osi-n" style="color:#FFCD00">5</div><div class="osi-nm">Sessão</div><div class="osi-d">NetBIOS, RPC, PPTP — setup/teardown de sessões</div></div>
+  <div class="osi-row" style="border-left-color:#6CC04A"><div class="osi-n" style="color:#6CC04A">4</div><div class="osi-nm">Transporte</div><div class="osi-d">TCP (confiável) · UDP (best-effort) · Segmentos</div></div>
+  <div class="osi-row" style="border-left-color:#049FD9"><div class="osi-n" style="color:#049FD9">3</div><div class="osi-nm">Rede</div><div class="osi-d">IP, ICMP, OSPF, EIGRP · Pacotes · Roteamento</div></div>
+  <div class="osi-row" style="border-left-color:#9B59B6"><div class="osi-n" style="color:#9B59B6">2</div><div class="osi-nm">Enlace</div><div class="osi-d">Ethernet, PPP · Quadros · Endereço MAC</div></div>
+  <div class="osi-row" style="border-left-color:#00A591"><div class="osi-n" style="color:#00A591">1</div><div class="osi-nm">Física</div><div class="osi-d">Bits · Cabo, fibra, Wi-Fi · Sinais elétricos/ópticos</div></div>
+  <div class="sub">TCP vs UDP</div>
+  <table class="mt">
+    <tr><th>TCP</th><th>UDP</th></tr>
+    <tr><td>Orientado à conexão</td><td>Sem conexão</td></tr>
+    <tr><td>3-way handshake SYN→SYN-ACK→ACK</td><td>Sem handshake</td></tr>
+    <tr><td>Confiável, ordenado, verificado</td><td>Rápido, baixo overhead</td></tr>
+    <tr><td>HTTP, FTP, SSH, SMTP</td><td>DNS, DHCP, VoIP, SNMP</td></tr>
+  </table>
+</div>
+
+<!-- COMPONENTES -->
+<div class="card B">
+  <div class="ch"><div class="dot"></div><div class="ct">Componentes de Rede</div><div class="cb">D1</div></div>
+  <div class="sub">Dispositivos</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Roteador</strong> — L3, encaminha pacotes entre redes, tabela de roteamento</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Switch L2</strong> — tabela MAC, flooding/learning/forwarding/filtering</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Switch L3</strong> — roteamento inter-VLAN por hardware (SVI)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Access Point (AP)</strong> — bridge wireless/cabeado (802.11)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>WLC</strong> — gerencia APs centralmente via CAPWAP (UDP 5246/5247)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Firewall / IDS / IPS</strong> — controle e inspeção de tráfego</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>DNA Center</strong> — controlador SDN Cisco, intent-based networking</div></div>
+  <div class="sub">Topologias</div>
+  <div class="two">
+    <div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Estrela</strong> — switch/hub central</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Barramento</strong> — backbone único</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Anel</strong> — token passing</div></div>
+    </div>
+    <div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Malha</strong> — full/partial mesh</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Híbrida</strong> — combinação</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Spine-Leaf</strong> — data center</div></div>
+    </div>
+  </div>
+  <div class="sub">Meios Físicos</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>UTP Cat5e</strong> — 1 Gbps/100m · <strong>Cat6</strong> — 10 Gbps/55m</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Fibra monomodo (SMF)</strong> — longa distância (&gt;10 km) · laser</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Fibra multimodo (MMF)</strong> — curta distância (até 550 m) · LED</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Cabo direto</strong> — dispositivos diferentes · <strong>Crossover</strong> — iguais</div></div>
+</div>
+
+<!-- IPv4 -->
+<div class="card B s2">
+  <div class="ch"><div class="dot"></div><div class="ct">Endereçamento IPv4 &amp; Subnetting</div><div class="cb">D1</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">Classes de Endereço</div>
+      <table class="mt">
+        <tr><th>Classe</th><th>Intervalo</th><th>Máscara Padrão</th><th>Hosts</th></tr>
+        <tr><td>A</td><td>1–126</td><td>/8 · 255.0.0.0</td><td>16,7 M</td></tr>
+        <tr><td>B</td><td>128–191</td><td>/16 · 255.255.0.0</td><td>65.534</td></tr>
+        <tr><td>C</td><td>192–223</td><td>/24 · 255.255.255.0</td><td>254</td></tr>
+        <tr><td>D</td><td>224–239</td><td>Multicast</td><td>—</td></tr>
+        <tr><td>E</td><td>240–255</td><td>Experimental</td><td>—</td></tr>
+      </table>
+      <div class="sub">Endereços Especiais (RFC 1918)</div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>10.0.0.0/8</code> — privado classe A</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>172.16.0.0–172.31.255.255</code> — privado /12</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>192.168.0.0/16</code> — privado classe C</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>127.0.0.1</code> loopback · <code>169.254.x.x</code> APIPA</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>0.0.0.0/0</code> rota padrão · <code>255.255.255.255</code> broadcast limitado</div></div>
+    </div>
+    <div>
+      <div class="sub">Referência CIDR Rápida</div>
+      <div class="srow"><span>/24</span><span>256 end. · 254 hosts</span><span>255.255.255.0</span></div>
+      <div class="srow"><span>/25</span><span>128 · 126 hosts</span><span>.128</span></div>
+      <div class="srow"><span>/26</span><span>64 · 62 hosts</span><span>.192</span></div>
+      <div class="srow"><span>/27</span><span>32 · 30 hosts</span><span>.224</span></div>
+      <div class="srow"><span>/28</span><span>16 · 14 hosts</span><span>.240</span></div>
+      <div class="srow"><span>/29</span><span>8 · 6 hosts</span><span>.248</span></div>
+      <div class="srow"><span>/30</span><span>4 · 2 hosts</span><span>.252</span></div>
+      <div class="srow"><span>/31</span><span>2 · link P2P</span><span>.254</span></div>
+      <div class="srow"><span>/32</span><span>1 · rota host</span><span>.255</span></div>
+      <div style="margin-top:5px;font-size:10px;color:var(--muted)">Hosts = 2<sup>n</sup> – 2 &nbsp;·&nbsp; Sub-redes = 2<sup>bits emprestados</sup></div>
+    </div>
+  </div>
+</div>
+
+<!-- IPv6 -->
+<div class="card B s2">
+  <div class="ch"><div class="dot"></div><div class="ct">Endereçamento IPv6</div><div class="cb">D1</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">Tipos de Endereço</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Global Unicast</strong> — <code>2000::/3</code> roteável na internet</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Link-Local</strong> — <code>FE80::/10</code> apenas no enlace local</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Loopback</strong> — <code>::1/128</code></div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Unspecified</strong> — <code>::/128</code></div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Multicast</strong> — <code>FF00::/8</code></div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Unique Local</strong> — <code>FC00::/7</code> privado (tipo RFC 1918)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Anycast</strong> — atribuído a vários; responde o mais próximo</div></div>
+      <div class="sub">Regras de Notação</div>
+      <div class="row"><div class="bul"></div><div class="rt">128 bits · 8 grupos de 4 hex · separados por ":"</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">Zeros à esquerda omitidos · <code>::</code> substitui grupos contíguos de zeros (uma vez)</div></div>
+    </div>
+    <div>
+      <div class="sub">Conceitos-Chave</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>EUI-64</strong> — ID de interface derivado do MAC (insere FFFE no meio)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>SLAAC</strong> — autoconfiguração sem estado via RA (ICMPv6)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>DHCPv6</strong> — stateful (todas as infos) ou stateless (opções apenas)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>NDP</strong> — substitui ARP · mensagens NS/NA via ICMPv6</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Sem broadcast</strong> — usa multicast no lugar</div></div>
+      <div class="sub">Multicast Especiais</div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>FF02::1</code> todos os nós · <code>FF02::2</code> todos os roteadores</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>FF02::5</code> roteadores OSPF · <code>FF02::6</code> DR/BDR OSPF</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>FF02::A</code> roteadores EIGRP</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- VLANs -->
+<div class="card G s2">
+  <div class="ch"><div class="dot"></div><div class="ct">VLANs &amp; Trunking</div><div class="cb">D2</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">Intervalos de VLAN</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>1–1005</strong> — intervalo normal (salvo em vlan.dat)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>1006–4094</strong> — estendido (VTP transparent ou off)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>VLAN 1</strong> — padrão, nativa, gerência — altere!</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>1002–1005</strong> — legado FDDI/Token Ring</div></div>
+      <div class="sub">Porta de Acesso vs Trunk</div>
+      <div class="cmd G"># Porta de acesso
+switchport mode access
+switchport access vlan 10
+# Porta trunk (802.1Q)
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30
+switchport trunk native vlan 99</div>
+    </div>
+    <div>
+      <div class="sub">802.1Q Tagging</div>
+      <div class="row"><div class="bul"></div><div class="rt">Tag de 4 bytes: <code>TPID(0x8100)</code> + PCP + DEI + <strong>VID (12 bits)</strong></div></div>
+      <div class="row"><div class="bul"></div><div class="rt">VLAN Nativa — quadros sem tag no trunk</div></div>
+      <div class="sub">VTP (VLAN Trunking Protocol)</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Servidor</strong> — cria/modifica/deleta VLANs</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Cliente</strong> — sincroniza do servidor, sem alterações</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Transparente</strong> — só local, encaminha anúncios VTP</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Off</strong> — sem processamento VTP (recomendado)</div></div>
+      <div class="sub">DTP (Negociação de Trunk)</div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>dynamic auto</code> aguarda · <code>dynamic desirable</code> inicia ativamente</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">Desabilitar: <code>switchport nonegotiate</code></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STP -->
+<div class="card G s2">
+  <div class="ch"><div class="dot"></div><div class="ct">STP / RSTP / MSTP</div><div class="cb">D2</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">Estados de Porta (802.1D)</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Blocking</strong> — só recebe BPDUs</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Listening</strong> — 15 s · sem encaminhar dados</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Learning</strong> — 15 s · constrói tabela MAC</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Forwarding</strong> — totalmente operacional</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Disabled</strong> — desativado administrativamente</div></div>
+      <div class="sub">Papéis de Porta</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Root Port</strong> — melhor caminho para root bridge</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Designated Port</strong> — melhor porta por segmento</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Alternate (RSTP)</strong> — backup do Root Port</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Backup (RSTP)</strong> — backup do Designated Port</div></div>
+    </div>
+    <div>
+      <div class="sub">Eleição da Root Bridge</div>
+      <div class="row"><div class="bul"></div><div class="rt">Menor <strong>Bridge Priority</strong> (padrão 32768) vence</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">Empate: menor endereço MAC vira root</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">Prioridade em incrementos de <strong>4096</strong></div></div>
+      <div class="sub">Timers (802.1D)</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Hello</strong> 2 s · <strong>Max Age</strong> 20 s · <strong>Forward Delay</strong> 15 s</div></div>
+      <div class="sub">Melhorias</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>PortFast</strong> — pula Listening/Learning em portas de borda</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>BPDU Guard</strong> — err-disable se BPDU recebido em PortFast</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Root Guard</strong> — impede root bridge não autorizada</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>RSTP 802.1w</strong> — convergência &lt;1 s · substitui 802.1D</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>PVST+</strong> — instância STP por VLAN (Cisco)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EtherChannel -->
+<div class="card G">
+  <div class="ch"><div class="dot"></div><div class="ct">EtherChannel</div><div class="cb">D2</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>PAgP</strong> — proprietário Cisco · <code>desirable/auto</code></div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>LACP (802.3ad)</strong> — padrão aberto · <code>active/passive</code></div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Static ON</strong> — sem negociação (ambos os lados = on)</div></div>
+  <div class="cmd G">interface range gi0/0 - 3
+channel-group 1 mode active
+interface port-channel 1
+switchport mode trunk</div>
+  <div class="sub">Balanceamento de Carga</div>
+  <div class="row"><div class="bul"></div><div class="rt"><code>port-channel load-balance src-dst-ip</code></div></div>
+  <div class="row"><div class="bul"></div><div class="rt">Opções: src/dst-mac, src/dst-ip, src-dst combinado</div></div>
+</div>
+
+<!-- Wireless -->
+<div class="card G">
+  <div class="ch"><div class="dot"></div><div class="ct">Wireless (802.11)</div><div class="cb">D2</div></div>
+  <table class="mt">
+    <tr><th>Padrão</th><th>Banda</th><th>Vel. Máx.</th></tr>
+    <tr><td>802.11a</td><td>5 GHz</td><td>54 Mbps</td></tr>
+    <tr><td>802.11b</td><td>2,4 GHz</td><td>11 Mbps</td></tr>
+    <tr><td>802.11g</td><td>2,4 GHz</td><td>54 Mbps</td></tr>
+    <tr><td>802.11n (Wi-Fi 4)</td><td>2,4/5 GHz</td><td>600 Mbps</td></tr>
+    <tr><td>802.11ac (Wi-Fi 5)</td><td>5 GHz</td><td>3,5 Gbps</td></tr>
+    <tr><td>802.11ax (Wi-Fi 6)</td><td>2,4/5/6 GHz</td><td>9,6 Gbps</td></tr>
+  </table>
+  <div class="sub">Modos de Implantação</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>AP Autônomo</strong> — standalone, configuração local</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>AP Lightweight + WLC</strong> — túneis CAPWAP, gerenciamento centralizado</div></div>
+  <div class="sub">Segurança Wireless</div>
+  <div class="row"><div class="bul"></div><div class="rt"><span class="tag tg">WPA3</span><span class="tag tg">WPA2-Enterprise</span><span class="tag tb">802.1X/EAP</span></div></div>
+  <div class="row"><div class="bul"></div><div class="rt">WPA2 (CCMP/AES) preferido · WPA (TKIP) legado · WEP obsoleto</div></div>
+</div>
+
+<!-- OSPF -->
+<div class="card O s2">
+  <div class="ch"><div class="dot"></div><div class="ct">OSPF — Open Shortest Path First</div><div class="cb">D3 · 25%</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">Conceitos Fundamentais</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Algoritmo</strong> — Dijkstra SPF · Link-State</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>DA</strong> — 110 · <strong>Métrica</strong> = custo = 100 Mbps / BW</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Multicast</strong> — <code>224.0.0.5</code> todos OSPF · <code>224.0.0.6</code> DR/BDR</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Router ID</strong> — maior loopback ou IP de interface ativa</div></div>
+      <div class="sub">Tipos de Roteador OSPF</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Internal Router</strong> — todas as interfaces em 1 área</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>ABR</strong> — Area Border Router · conecta áreas</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>ASBR</strong> — AS Boundary Router · rotas externas</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Backbone Router</strong> — interface na Área 0</div></div>
+      <div class="sub">Estados de Vizinhança</div>
+      <div class="row"><div class="bul"></div><div class="rt">Down → Init → 2-Way → ExStart → Exchange → Loading → <strong>Full</strong></div></div>
+    </div>
+    <div>
+      <div class="sub">Tipos de LSA</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Tipo 1</strong> Router LSA · intra-área</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Tipo 2</strong> Network LSA · gerado pelo DR</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Tipo 3</strong> Summary LSA · ABR inter-área</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Tipo 5</strong> External LSA · gerado pelo ASBR</div></div>
+      <div class="sub">Eleição DR/BDR</div>
+      <div class="row"><div class="bul"></div><div class="rt">Maior <strong>prioridade</strong> (padrão 1) → maior Router ID</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">Prioridade 0 = inelegiível · Somente em broadcast/NBMA</div></div>
+      <div class="cmd O">router ospf 1
+  router-id 1.1.1.1
+  network 10.0.0.0 0.0.0.255 area 0
+  passive-interface default
+  no passive-interface gi0/0
+  auto-cost reference-bandwidth 1000</div>
+    </div>
+  </div>
+</div>
+
+<!-- Rotas Estáticas -->
+<div class="card O">
+  <div class="ch"><div class="dot"></div><div class="ct">Rotas Estáticas &amp; Padrão</div><div class="cb">D3</div></div>
+  <div class="cmd O"># Rota estática
+ip route 192.168.2.0 255.255.255.0 10.0.0.2
+# Rota padrão (quad-zero)
+ip route 0.0.0.0 0.0.0.0 10.0.0.1
+# Flutuante (DA=200)
+ip route 0.0.0.0 0.0.0.0 10.0.0.2 200
+# IPv6 estática
+ipv6 route ::/0 2001:db8::1</div>
+  <div class="sub">Distâncias Administrativas (menor = melhor)</div>
+  <table class="mt">
+    <tr><th>Origem</th><th>DA</th></tr>
+    <tr><td>Conectada</td><td>0</td></tr>
+    <tr><td>Estática</td><td>1</td></tr>
+    <tr><td>Resumo EIGRP</td><td>5</td></tr>
+    <tr><td>OSPF</td><td>110</td></tr>
+    <tr><td>RIP</td><td>120</td></tr>
+    <tr><td>EIGRP Externo</td><td>170</td></tr>
+  </table>
+</div>
+
+<!-- EIGRP -->
+<div class="card O">
+  <div class="ch"><div class="dot"></div><div class="ct">EIGRP</div><div class="cb">D3</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Algoritmo</strong> — DUAL · híbrido (vetor distância + link-state)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>DA</strong> — Interno: 90 · Externo: 170 · Resumo: 5</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Multicast</strong> — <code>224.0.0.10</code> · Protocolo IP 88</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Métrica</strong> — BW + Delay (K1=1, K3=1 padrão)</div></div>
+  <div class="sub">Terminologia EIGRP</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Successor</strong> — melhor rota na tabela de roteamento</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Feasible Successor</strong> — rota backup na tabela de topologia</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>FD</strong> Feasible Distance · <strong>RD</strong> Reported Distance</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>FC</strong> Feasibility Condition: RD &lt; FD do successor</div></div>
+  <div class="cmd O">router eigrp 100
+  network 10.0.0.0 0.0.0.255
+  no auto-summary</div>
+</div>
+
+<!-- FHRP -->
+<div class="card O">
+  <div class="ch"><div class="dot"></div><div class="ct">FHRP — Redundância de Gateway</div><div class="cb">D3</div></div>
+  <table class="mt">
+    <tr><th>Protocolo</th><th>Padrão</th><th>Multicast</th><th>Prioridade</th></tr>
+    <tr><td>HSRP v1</td><td>Cisco</td><td>224.0.0.2</td><td>100</td></tr>
+    <tr><td>HSRP v2</td><td>Cisco</td><td>224.0.0.102</td><td>100 / IPv6</td></tr>
+    <tr><td>VRRP</td><td>Aberto</td><td>224.0.0.18</td><td>100</td></tr>
+    <tr><td>GLBP</td><td>Cisco</td><td>224.0.0.102</td><td>Balance carga</td></tr>
+  </table>
+  <div class="cmd O">interface gi0/0
+  ip address 10.0.0.2 255.255.255.0
+  standby 1 ip 10.0.0.1
+  standby 1 priority 110
+  standby 1 preempt</div>
+  <div class="row"><div class="bul"></div><div class="rt">Maior prioridade vence · Empate → maior IP = ativo</div></div>
+</div>
+
+<!-- Inter-VLAN -->
+<div class="card O">
+  <div class="ch"><div class="dot"></div><div class="ct">Roteamento Inter-VLAN</div><div class="cb">D3</div></div>
+  <div class="sub">Router-on-a-Stick</div>
+  <div class="cmd O">interface gi0/0.10
+  encapsulation dot1Q 10
+  ip address 192.168.10.1 255.255.255.0
+interface gi0/0.20
+  encapsulation dot1Q 20
+  ip address 192.168.20.1 255.255.255.0</div>
+  <div class="sub">Switch L3 (SVI)</div>
+  <div class="cmd O">ip routing
+interface vlan 10
+  ip address 192.168.10.1 255.255.255.0
+  no shutdown</div>
+</div>
+
+<!-- DHCP -->
+<div class="card Y">
+  <div class="ch"><div class="dot"></div><div class="ct">DHCP</div><div class="cb">D4</div></div>
+  <div class="row"><div class="bul"></div><div class="rt">DORA: <strong>Discover → Offer → Request → ACK</strong></div></div>
+  <div class="row"><div class="bul"></div><div class="rt">UDP porta <strong>67</strong> (servidor) / <strong>68</strong> (cliente)</div></div>
+  <div class="cmd Y">ip dhcp pool REDE-LOCAL
+  network 192.168.1.0 /24
+  default-router 192.168.1.1
+  dns-server 8.8.8.8
+  lease 7
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+# Relay (helper)
+ip helper-address 10.0.0.100</div>
+  <div class="sub">DHCPv6</div>
+  <div class="row"><div class="bul"></div><div class="rt">UDP porta <strong>546</strong> (cliente) / <strong>547</strong> (servidor)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt">Fluxo: Solicit → Advertise → Request → Reply</div></div>
+</div>
+
+<!-- DNS/NTP/Syslog -->
+<div class="card Y">
+  <div class="ch"><div class="dot"></div><div class="ct">DNS / NTP / Syslog / SNMP</div><div class="cb">D4</div></div>
+  <div class="sub">DNS — porta 53 TCP/UDP</div>
+  <div class="row"><div class="bul"></div><div class="rt">Registros: A (IPv4) · AAAA (IPv6) · PTR (reverso) · CNAME · MX · NS</div></div>
+  <div class="sub">NTP — porta 123 UDP</div>
+  <div class="row"><div class="bul"></div><div class="rt">Stratum 0 = relógio atômico · Stratum 1 = diretamente conectado</div></div>
+  <div class="cmd Y">ntp server pool.ntp.org
+ntp master 3</div>
+  <div class="sub">Níveis Syslog (0–7)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px 8px;margin-top:4px">
+    <div style="font-size:10px"><span style="color:#E2231A">0</span> Emergência · <span style="color:#E2231A">1</span> Alerta · <span style="color:#FF6B00">2</span> Crítico</div>
+    <div style="font-size:10px"><span style="color:#FF6B00">3</span> Erro · <span style="color:#FFCD00">4</span> Aviso · <span style="color:#6CC04A">5</span> Notificação</div>
+    <div style="font-size:10px"><span style="color:#049FD9">6</span> Informativo · <span style="color:var(--muted)">7</span> Depuração</div>
+  </div>
+  <div class="sub">SNMP — portas 161/162 UDP</div>
+  <div class="row"><div class="bul"></div><div class="rt">v2c — community strings · v3 — autenticação + criptografia</div></div>
+  <div class="row"><div class="bul"></div><div class="rt">Get (161) · Trap (162) · Inform (confiável)</div></div>
+</div>
+
+<!-- NAT -->
+<div class="card Y">
+  <div class="ch"><div class="dot"></div><div class="ct">NAT &amp; PAT</div><div class="cb">D4</div></div>
+  <div class="sub">Tipos de NAT</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>NAT Estático</strong> — mapeamento 1:1 · publicação de servidores</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>NAT Dinâmico</strong> — pool de IPs públicos · vários:vários</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>PAT (overload)</strong> — vários:1 IP público · traduz porta</div></div>
+  <div class="cmd Y"># PAT (overload)
+ip nat inside source list 1 int gi0/0 overload
+access-list 1 permit 192.168.0.0 0.0.255.255
+interface gi0/1
+  ip nat inside
+interface gi0/0
+  ip nat outside</div>
+  <div class="cmd Y">show ip nat translations
+show ip nat statistics</div>
+</div>
+
+<!-- QoS -->
+<div class="card Y">
+  <div class="ch"><div class="dot"></div><div class="ct">QoS — Qualidade de Serviço</div><div class="cb">D4</div></div>
+  <div class="sub">Marcações DSCP / CoS</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>EF (46)</strong> — Expedited Forwarding · VoIP RTP</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>AF41 (34)</strong> — Vídeo · <strong>AF31 (26)</strong> — Sinalização de chamada</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>CS6 (48)</strong> — Controle de rede · <strong>CS7 (56)</strong> — Máximo</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>BE/DF (0)</strong> — Padrão / Best Effort</div></div>
+  <div class="sub">Modelos QoS</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>IntServ</strong> — por fluxo · RSVP · não escalável</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>DiffServ</strong> — baseado em classe · PHB · escalável (foco CCNA)</div></div>
+  <div class="cmd Y">class-map match-any VOZ
+  match dscp ef
+policy-map POLITICA-QOS
+  class VOZ
+    priority 128
+service-policy output POLITICA-QOS</div>
+</div>
+
+<!-- ACLs -->
+<div class="card R s2">
+  <div class="ch"><div class="dot"></div><div class="ct">ACLs — Listas de Controle de Acesso</div><div class="cb">D5 · Segurança</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">ACL Padrão (1–99, 1300–1999)</div>
+      <div class="row"><div class="bul"></div><div class="rt">Filtra apenas <strong>IP de origem</strong> · Aplicar próximo ao destino</div></div>
+      <div class="cmd R">access-list 10 permit 192.168.1.0 0.0.0.255
+access-list 10 deny any
+interface gi0/0
+  ip access-group 10 in</div>
+      <div class="sub">ACL Estendida (100–199, 2000–2699)</div>
+      <div class="row"><div class="bul"></div><div class="rt">Filtra src/dst IP, protocolo, porta · Aplicar próximo à origem</div></div>
+      <div class="cmd R">ip access-list extended BLOQUEAR-WEB
+  deny tcp any any eq 80
+  deny tcp any any eq 443
+  permit ip any any</div>
+    </div>
+    <div>
+      <div class="sub">ACL Nomeada</div>
+      <div class="cmd R">ip access-list extended NOMEADA
+  10 permit tcp 10.0.0.0 0.0.0.255 any eq 22
+  20 deny ip any any
+  # Deletar linha:
+  no 10</div>
+      <div class="sub">Máscaras Wildcard</div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>0.0.0.0</code> = host exato · <code>255.255.255.255</code> = any</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><code>0.0.0.255</code> = rede /24 · <code>host</code> = /32 · <code>any</code> = 0.0.0.0 255.255.255.255</div></div>
+      <div class="sub">Regras Importantes</div>
+      <div class="row"><div class="bul"></div><div class="rt">Processado de cima para baixo · primeiro match aplica</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Deny implícito</strong> ao final de toda ACL</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">Uma ACL por interface por direção (in/out)</div></div>
+      <div class="cmd R">show access-lists
+show ip interface gi0/0</div>
+    </div>
+  </div>
+</div>
+
+<!-- Ameaças -->
+<div class="card R">
+  <div class="ch"><div class="dot"></div><div class="ct">Ameaças &amp; Ataques</div><div class="cb">D5</div></div>
+  <div class="sub">Ataques Comuns</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>DoS/DDoS</strong> — sobrecarga de recursos · SYN flood</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Phishing</strong> — roubo de credenciais por e-mail/site falso</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Spoofing</strong> — falsificação de IP/MAC/ARP</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>MITM</strong> — intercepta/altera tráfego entre hosts</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>VLAN Hopping</strong> — double-tagging / switch spoofing</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Reconhecimento CDP/LLDP</strong> — vazamento de topologia</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Ataque de Senha</strong> — brute force, dicionário</div></div>
+  <div class="sub">Tipos de Malware</div>
+  <div class="row"><div class="bul"></div><div class="rt"><span class="tag tr">Vírus</span><span class="tag tr">Worm</span><span class="tag tr">Trojan</span><span class="tag tr">Ransomware</span><span class="tag tr">Rootkit</span><span class="tag tr">Spyware</span></div></div>
+</div>
+
+<!-- Hardening -->
+<div class="card R">
+  <div class="ch"><div class="dot"></div><div class="ct">Hardening de Dispositivos</div><div class="cb">D5</div></div>
+  <div class="cmd R"># Segurança de senhas
+service password-encryption
+enable secret SenhaForte1!
+security passwords min-length 10
+# Console / VTY
+line console 0
+  login local
+  exec-timeout 5 0
+line vty 0 4
+  transport input ssh
+  login local
+# SSH v2
+ip domain-name cisco.lab
+crypto key generate rsa modulus 2048
+ip ssh version 2
+# Desabilitar serviços desnecessários
+no service finger
+no ip http server
+no cdp run</div>
+</div>
+
+<!-- Port Security -->
+<div class="card R">
+  <div class="ch"><div class="dot"></div><div class="ct">Segurança de Porta &amp; Switch</div><div class="cb">D5</div></div>
+  <div class="cmd R">interface gi0/1
+  switchport mode access
+  switchport port-security
+  switchport port-security maximum 2
+  switchport port-security mac-address sticky
+  switchport port-security violation restrict
+  # restrict / protect / shutdown</div>
+  <div class="sub">Modos de Violação</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Shutdown</strong> — err-disable porta · log + trap (padrão)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Restrict</strong> — descarta frames · incrementa contador · loga</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Protect</strong> — descarta frames apenas · sem log</div></div>
+  <div class="sub">Proteções Adicionais</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>DHCP Snooping</strong> — valida mensagens DHCP em portas não confiáveis</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>DAI</strong> — Dynamic ARP Inspection · valida ARP x tabela binding</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>IP Source Guard</strong> — valida IP/MAC contra base DHCP Snooping</div></div>
+</div>
+
+<!-- VPN/AAA -->
+<div class="card R">
+  <div class="ch"><div class="dot"></div><div class="ct">VPN / AAA / 802.1X</div><div class="cb">D5</div></div>
+  <div class="sub">Tipos de VPN</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Site-to-Site IPsec</strong> — túnal permanente entre sites</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Acesso Remoto</strong> — cliente VPN (AnyConnect/SSL/TLS)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>GRE</strong> — encapsula multicast/protocolos de roteamento</div></div>
+  <div class="sub">IPsec</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>AH (51)</strong> — integridade/autenticação · <strong>ESP (50)</strong> — criptografia + autenticação</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>IKEv1/v2</strong> — troca de chaves · UDP 500 / NAT-T UDP 4500</div></div>
+  <div class="sub">AAA</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Autenticação</strong> Quem? · <strong>Autorização</strong> O quê? · <strong>Contabilidade</strong> Log</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>RADIUS</strong> — UDP 1812/1813 · criptografa só a senha</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>TACACS+</strong> — TCP 49 · criptografa payload completo · Cisco</div></div>
+  <div class="sub">802.1X (NAC)</div>
+  <div class="row"><div class="bul"></div><div class="rt">Supplicant (cliente) → Authenticator (switch/AP) → Auth Server (RADIUS)</div></div>
+</div>
+
+<!-- Automação/SDN -->
+<div class="card T s2">
+  <div class="ch"><div class="dot"></div><div class="ct">Automação, SDN &amp; Programabilidade</div><div class="cb">D6 · 10%</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">Arquitetura SDN</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Plano de Dados</strong> — encaminha pacotes (hardware/ASIC)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Plano de Controle</strong> — decisões de roteamento (CPU)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Plano de Gerência</strong> — SNMP, SSH, REST APIs</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Northbound API</strong> — controlador → aplicação (REST/JSON)</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Southbound API</strong> — controlador → dispositivos (OpenFlow, NETCONF)</div></div>
+      <div class="sub">Cisco DNA Center</div>
+      <div class="row"><div class="bul"></div><div class="rt">Redes baseadas em intenção · automação de políticas</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">REST API · JSON · modelos de dados YANG</div></div>
+      <div class="row"><div class="bul"></div><div class="rt">Fabric: SD-Access (campus) · SD-WAN (WAN)</div></div>
+      <div class="sub">IA/ML &amp; Gen AI (Novo v1.1)</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>ML</strong> — detecção de anomalias, análise preditiva de rede</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Gen AI</strong> — assistência em configuração e troubleshooting</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>Gerência em Nuvem</strong> — Meraki, infraestrutura cloud-managed</div></div>
+    </div>
+    <div>
+      <div class="sub">Ferramentas de Gerenciamento de Configuração</div>
+      <table class="mt">
+        <tr><th>Ferramenta</th><th>Linguagem</th><th>Sem Agente?</th></tr>
+        <tr><td>Ansible</td><td>YAML</td><td>Sim (SSH)</td></tr>
+        <tr><td>Puppet</td><td>Ruby/DSL</td><td>Não (agente)</td></tr>
+        <tr><td>Chef</td><td>Ruby</td><td>Não (agente)</td></tr>
+        <tr><td>Terraform</td><td>HCL</td><td>Sim</td></tr>
+      </table>
+      <div class="sub">Métodos REST API</div>
+      <div class="row"><div class="bul"></div><div class="rt"><span class="tag tt">GET</span> recuperar · <span class="tag tt">POST</span> criar · <span class="tag tt">PUT</span> substituir</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><span class="tag tt">PATCH</span> modificar · <span class="tag tt">DELETE</span> remover</div></div>
+      <div class="sub">Formatos de Dados</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>JSON</strong> — chave:valor, arrays · mais comum em APIs REST</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>XML</strong> — hierárquico · NETCONF usa XML</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>YAML</strong> — legível por humanos · playbooks Ansible</div></div>
+      <div class="sub">NETCONF / RESTCONF</div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>NETCONF</strong> — SSH + XML · RFC 6241 · porta 830</div></div>
+      <div class="row"><div class="bul"></div><div class="rt"><strong>RESTCONF</strong> — HTTP + JSON/XML · RFC 8040 · modelos YANG</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Virtualização -->
+<div class="card T">
+  <div class="ch"><div class="dot"></div><div class="ct">Virtualização &amp; Nuvem</div><div class="cb">D1/D6</div></div>
+  <div class="sub">Virtualização de Servidores</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Hipervisor Tipo 1</strong> — bare metal (VMware ESXi, Hyper-V)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Hipervisor Tipo 2</strong> — hospedado (VirtualBox, VMware Workstation)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>Contêineres</strong> — virtualização em nível de SO · Docker · mais leve que VM</div></div>
+  <div class="sub">VRF (Virtual Routing &amp; Forwarding)</div>
+  <div class="row"><div class="bul"></div><div class="rt">Múltiplas tabelas de roteamento em um único roteador · VPN MPLS</div></div>
+  <div class="sub">Modelos de Nuvem</div>
+  <div class="row"><div class="bul"></div><div class="rt"><span class="tag tt">IaaS</span> VM, armazenamento, rede &nbsp;<span class="tag tt">PaaS</span> Plataforma dev</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><span class="tag tt">SaaS</span> Software como serviço &nbsp;<span class="tag tt">On-Prem</span> controle total</div></div>
+  <div class="row"><div class="bul"></div><div class="rt">Pública · Privada · Híbrida · Comunitária</div></div>
+</div>
+
+<!-- Comandos IOS -->
+<div class="card P s2">
+  <div class="ch"><div class="dot"></div><div class="ct">Comandos IOS Essenciais</div><div class="cb">Todos Domínios</div></div>
+  <div class="two">
+    <div>
+      <div class="sub">Show / Verificação</div>
+      <div class="cmd P">show version              # IOS, uptime, hardware
+show ip interface brief   # status/IP interfaces
+show interfaces gi0/0     # estatísticas detalhadas
+show ip route             # tabela de roteamento
+show ip ospf neighbor     # adjacências OSPF
+show spanning-tree        # estado STP
+show vlan brief           # tabela VLAN
+show mac address-table    # tabela CAM (MAC)
+show ip arp               # tabela ARP
+show cdp neighbors detail # info de vizinhos
+show running-config       # configuração ativa
+show startup-config       # configuração NVRAM</div>
+    </div>
+    <div>
+      <div class="sub">Modos de Configuração</div>
+      <div class="cmd P">enable                    # EXEC privilegiado
+configure terminal        # conf global
+interface gi0/0           # conf de interface
+do show ...               # show dentro do conf
+end / exit / ctrl+z       # sair de modos
+copy running startup      # salvar configuração
+write memory              # salvar (alias)</div>
+      <div class="sub">Troubleshooting</div>
+      <div class="cmd P">ping 192.168.1.1
+traceroute 8.8.8.8
+debug ip ospf events
+debug ip routing
+undebug all</div>
+    </div>
+  </div>
+</div>
+
+<!-- WAN -->
+<div class="card P">
+  <div class="ch"><div class="dot"></div><div class="ct">WAN &amp; Encapsulamentos</div><div class="cb">D1/D3</div></div>
+  <table class="mt">
+    <tr><th>Tecnologia</th><th>Tipo</th><th>Observação</th></tr>
+    <tr><td>MPLS</td><td>Pacote</td><td>Comutação por label</td></tr>
+    <tr><td>Metro Ethernet</td><td>L2/L3</td><td>E-Line, E-LAN, E-Tree</td></tr>
+    <tr><td>SD-WAN</td><td>Overlay</td><td>Definido por software</td></tr>
+    <tr><td>Leased Line</td><td>Físico</td><td>T1/E1, DS3, serial</td></tr>
+    <tr><td>Cable/DSL</td><td>Banda larga</td><td>Assimétrico, HFC/ADSL</td></tr>
+  </table>
+  <div class="sub">Encapsulamentos Serial</div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>HDLC</strong> — padrão serial Cisco · ponto a ponto</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>PPP</strong> — multi-vendor, LCP/NCP, suporta autenticação (PAP/CHAP)</div></div>
+  <div class="row"><div class="bul"></div><div class="rt"><strong>PPPoE</strong> — PPP sobre Ethernet · conexões DSL</div></div>
+</div>
+
+<!-- Portas -->
+<div class="card P">
+  <div class="ch"><div class="dot"></div><div class="ct">Portas &amp; Protocolos Essenciais</div><div class="cb">D1/D5</div></div>
+  <table class="mt">
+    <tr><th>Porta</th><th>Protocolo</th><th>Transporte</th></tr>
+    <tr><td>20/21</td><td>FTP dados/ctrl</td><td>TCP</td></tr>
+    <tr><td>22</td><td>SSH</td><td>TCP</td></tr>
+    <tr><td>23</td><td>Telnet</td><td>TCP</td></tr>
+    <tr><td>25</td><td>SMTP</td><td>TCP</td></tr>
+    <tr><td>53</td><td>DNS</td><td>TCP/UDP</td></tr>
+    <tr><td>67/68</td><td>DHCP</td><td>UDP</td></tr>
+    <tr><td>80</td><td>HTTP</td><td>TCP</td></tr>
+    <tr><td>110</td><td>POP3</td><td>TCP</td></tr>
+    <tr><td>123</td><td>NTP</td><td>UDP</td></tr>
+    <tr><td>143</td><td>IMAP</td><td>TCP</td></tr>
+    <tr><td>161/162</td><td>SNMP</td><td>UDP</td></tr>
+    <tr><td>443</td><td>HTTPS</td><td>TCP</td></tr>
+    <tr><td>514</td><td>Syslog</td><td>UDP</td></tr>
+    <tr><td>830</td><td>NETCONF</td><td>TCP</td></tr>
+  </table>
+</div>
+
+<!-- CDP/LLDP -->
+<div class="card P">
+  <div class="ch"><div class="dot"></div><div class="ct">CDP &amp; LLDP</div><div class="cb">D2</div></div>
+  <div class="sub">CDP — Cisco Discovery Protocol</div>
+  <div class="row"><div class="bul"></div><div class="rt">Proprietário Cisco · L2 · Multicast <code>01:00:0C:CC:CC:CC</code></div></div>
+  <div class="row"><div class="bul"></div><div class="rt">Timer: 60 s · Holdtime: 180 s</div></div>
+  <div class="cmd P">show cdp neighbors
+show cdp neighbors detail
+no cdp run           # desabilitar globalmente
+no cdp enable        # desabilitar por interface</div>
+  <div class="sub">LLDP — 802.1AB (Padrão Aberto)</div>
+  <div class="row"><div class="bul"></div><div class="rt">Timer: 30 s · Holdtime: 120 s</div></div>
+  <div class="cmd P">lldp run
+show lldp neighbors detail
+no lldp transmit / no lldp receive</div>
+</div>
+
+<!-- GLOSSÁRIO -->
+<div class="card s4" style="background:var(--bg2);border-top:2px solid var(--blue);">
+  <div class="ch">
+    <div class="dot" style="background:var(--blue)"></div>
+    <div class="ct" style="color:var(--blue)">Glossário CCNA — Termos Essenciais</div>
+    <div class="cb" style="background:rgba(4,159,217,0.18);color:var(--blue)">TODOS OS DOMÍNIOS</div>
+  </div>
+  <div class="three">
+    <div>
+      <div class="sub">A</div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>ABR</strong> — Area Border Router; conecta áreas OSPF à Área 0</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>ACL</strong> — Access Control List; filtra tráfego por regras definidas</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>AD</strong> — Administrative Distance; preferência de fonte de rota</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>ARP</strong> — Address Resolution Protocol; resolve IP → MAC (L3→L2)</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>ASBR</strong> — AS Boundary Router; injeta rotas externas no OSPF</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>ASN</strong> — Autonomous System Number; identifica um AS na internet</div></div>
+      <div class="sub">B / C</div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>BDR</strong> — Backup Designated Router; substituto do DR no OSPF</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>BPDU</strong> — Bridge Protocol Data Unit; mensagem STP entre switches</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>CAPWAP</strong> — Control and Provisioning of Wireless APs; túnal AP↔WLC</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>CDP</strong> — Cisco Discovery Protocol; descobre vizinhos Cisco em L2</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>CIDR</strong> — Classless Inter-Domain Routing; notação /x para prefixos</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>CoS</strong> — Class of Service; marcação QoS em L2 (802.1p, 3 bits)</div></div>
+      <div class="sub">D / E</div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DAI</strong> — Dynamic ARP Inspection; valida mensagens ARP no switch</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DHCP</strong> — Dynamic Host Configuration Protocol; atribui IPs automaticamente</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DNS</strong> — Domain Name System; resolve nomes em endereços IP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DORA</strong> — Discover, Offer, Request, ACK; fluxo de aquisição DHCP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DR</strong> — Designated Router; centraliza LSAs em segmentos multiacesso</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DSCP</strong> — Differentiated Services Code Point; marcação QoS L3 (6 bits)</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DTP</strong> — Dynamic Trunking Protocol; negocia trunk entre switches Cisco</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>DUAL</strong> — Diffusing Update Algorithm; algoritmo de convergência do EIGRP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(4,159,217,0.6)"></div><div class="rt"><strong>EUI-64</strong> — Extended Unique Identifier 64; ID de interface IPv6 do MAC</div></div>
+    </div>
+    <div>
+      <div class="sub">F / G / H / I</div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>FC</strong> — Feasibility Condition; critério para Feasible Successor EIGRP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>FD</strong> — Feasible Distance; melhor métrica conhecida para destino EIGRP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>FHRP</strong> — First Hop Redundancy Protocol; HSRP, VRRP, GLBP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>FTP</strong> — File Transfer Protocol; transferência de arquivos TCP 20/21</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>GLBP</strong> — Gateway Load Balancing Protocol; FHRP Cisco com balanceamento</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>GRE</strong> — Generic Routing Encapsulation; túnal para multicast/roteamento</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>HDLC</strong> — High-Level Data Link Control; encapsulamento serial padrão Cisco</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>HSRP</strong> — Hot Standby Router Protocol; FHRP proprietário Cisco</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>ICMP</strong> — Internet Control Message Protocol; diagnóstico (ping, traceroute)</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>IKE</strong> — Internet Key Exchange; negociação de túnal IPsec (v1/v2)</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>IPsec</strong> — IP Security; suite de protocolos para VPN segura (AH + ESP)</div></div>
+      <div class="sub">L / M / N</div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>LACP</strong> — Link Aggregation Control Protocol; EtherChannel padrão 802.3ad</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>LLDP</strong> — Link Layer Discovery Protocol; descoberta de vizinhos aberto</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>LSA</strong> — Link-State Advertisement; unidade de informação do OSPF</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>LSDB</strong> — Link-State Database; base de dados topológica do OSPF</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>MAC</strong> — Media Access Control; endereço físico de 48 bits (L2)</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>MITM</strong> — Man-in-the-Middle; ataque de interceptação de tráfego</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>MPLS</strong> — Multiprotocol Label Switching; comutação por rótulos em WAN</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>NAT</strong> — Network Address Translation; tradução de endereços IP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>NDP</strong> — Neighbor Discovery Protocol; substitui ARP no IPv6 (ICMPv6)</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>NETCONF</strong> — Network Configuration Protocol; gestão via SSH+XML RFC 6241</div></div>
+      <div class="row"><div class="bul" style="background:rgba(108,192,74,0.6)"></div><div class="rt"><strong>NTP</strong> — Network Time Protocol; sincronização de tempo UDP 123</div></div>
+    </div>
+    <div>
+      <div class="sub">O / P / Q</div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>OSPF</strong> — Open Shortest Path First; protocolo link-state, DA 110</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>PAgP</strong> — Port Aggregation Protocol; EtherChannel proprietário Cisco</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>PAT</strong> — Port Address Translation; NAT overload, vários:1 IP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>PHB</strong> — Per-Hop Behavior; tratamento por classe no DiffServ</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>PPP</strong> — Point-to-Point Protocol; encapsulamento serial multi-vendor</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>PPPoE</strong> — PPP over Ethernet; usado em conexões DSL/ADSL</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>PVST+</strong> — Per-VLAN Spanning Tree Plus; instância STP por VLAN Cisco</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>QoS</strong> — Quality of Service; priorização e gerência de tráfego</div></div>
+      <div class="sub">R / S</div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>RADIUS</strong> — Remote Authentication Dial-In User Service; AAA UDP 1812/1813</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>RD</strong> — Reported Distance; métrica anunciada pelo vizinho EIGRP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>RESTCONF</strong> — REST-based NETCONF; gestão via HTTP+JSON/XML RFC 8040</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>RIP</strong> — Routing Information Protocol; vetor distância legado, DA 120</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>RSTP</strong> — Rapid Spanning Tree Protocol (802.1w); convergência sub-segundo</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>SDN</strong> — Software-Defined Networking; separação dos planos de controle/dados</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>SLAAC</strong> — Stateless Address Autoconfiguration; autoconf IPv6 sem DHCP</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>SNMP</strong> — Simple Network Management Protocol; gerência UDP 161/162</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>SPF</strong> — Shortest Path First; algoritmo Dijkstra usado no OSPF</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>SSH</strong> — Secure Shell; acesso remoto seguro TCP 22</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>STP</strong> — Spanning Tree Protocol; previne loops L2 em redes redundantes</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>SVI</strong> — Switched Virtual Interface; interface L3 no switch para inter-VLAN</div></div>
+      <div class="sub">T / V / W / Y</div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>TACACS+</strong> — Terminal Access Controller Access-Control System+; AAA TCP 49</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>VLAN</strong> — Virtual LAN; segmentação lógica de rede no switch</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>VRF</strong> — Virtual Routing and Forwarding; tabelas de roteamento independentes</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>VRRP</strong> — Virtual Router Redundancy Protocol; FHRP padrão aberto</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>VTP</strong> — VLAN Trunking Protocol; propaga informações de VLAN entre switches</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>WLC</strong> — Wireless LAN Controller; gerencia APs via CAPWAP centralmente</div></div>
+      <div class="row"><div class="bul" style="background:rgba(255,107,0,0.6)"></div><div class="rt"><strong>YANG</strong> — Yet Another Next Generation; modelagem de dados NETCONF/RESTCONF</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /grid -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-l">CCNA 200-301 v1.1 &nbsp;·&nbsp; Cheat Sheet &nbsp;·&nbsp; 2025–2026 &nbsp;·&nbsp; Mariana BS</div>
+  <div class="footer-r">cisco.com/go/ccna</div>
+</div>
+
+</body>
+</html>
